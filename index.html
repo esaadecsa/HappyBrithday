@@ -12,8 +12,14 @@
 </head>
 <body>
 <div id="stars" class="stars" aria-hidden="true"></div>
+<div id="hearts" class="hearts-layer" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div id="confetti" class="confetti-layer" aria-hidden="true"></div>
+<div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+
+<div id="progress" class="progress-dots" aria-hidden="true">
+  <i data-step="intro"></i><i data-step="letter"></i><i data-step="wish"></i><i data-step="gift"></i><i data-step="candle"></i><i data-step="final"></i>
+</div>
 
 <main class="app">
 <section id="intro" class="screen active">
@@ -25,13 +31,14 @@
     <p class="intro-copy">Aku punya sesuatu kecil yang ingin aku kasih ke kamu.</p>
     <button id="openBtn" class="primary-btn"><span>Buka suratnya</span><span>→</span></button>
     <div class="hint">lebih bagus kalau dibuka pelan-pelan ✦</div>
+    <div id="countdown" class="countdown" aria-live="polite"></div>
   </div>
 </section>
 
 <section id="letter" class="screen">
-  <div class="topbar"><button id="musicBtn" class="icon-btn">♫</button><span>FOR YOU</span><button id="closeBtn" class="icon-btn">×</button></div>
+  <div class="topbar"><div class="topbar-left"><button id="musicBtn" class="icon-btn">♫</button><button id="sfxBtn" class="icon-btn">🔔</button></div><span>FOR YOU</span><button id="closeBtn" class="icon-btn">×</button></div>
   <div class="letter-wrap">
-    <div class="photo-frame"><div class="photo-glow"></div><img src="./img/hbd1.png" alt="Birthday"><span class="photo-label">a little memory ♡</span></div>
+    <div class="photo-frame tilt-el"><div class="photo-glow"></div><img src="./img/hbd1.png" alt="Birthday"><span class="photo-label">a little memory ♡</span></div>
     <article class="letter-card">
       <div class="letter-date">22 · OCTOBER</div>
       <h2>Selamat<br><em>ulang tahun.</em></h2>
@@ -59,7 +66,7 @@
   <div class="scene-aura"></div>
   <div class="experience-card">
     <div class="step-label"><span>03</span><i></i><span>?</span></div>
-    <button id="giftObject" class="gift-object" aria-label="Buka hadiah">
+    <button id="giftObject" class="gift-object tilt-el" aria-label="Buka hadiah">
       <span class="gift-lid"></span><span class="gift-body"></span><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span><span class="gift-bow">♡</span>
     </button>
     <div class="eyebrow">JUST FOR YOU</div>
@@ -119,7 +126,11 @@
     <div class="eyebrow">WISH GRANTED</div>
     <h2>Happy Birthday,<br><em id="nameFinal">you</em> ♡</h2>
     <p>Semoga semua doa baikmu<br>menemukan jalannya.</p>
-    <button id="againBtn" class="ghost-btn">ulang dari awal ↗</button>
+    <div class="final-actions">
+      <button id="shareBtn" class="primary-btn"><span>Bagikan surat ini</span><span>♡</span></button>
+      <button id="againBtn" class="ghost-btn">ulang dari awal ↗</button>
+    </div>
+    <div id="shareHint" class="micro-copy"></div>
   </div>
 </section>
 </main>
