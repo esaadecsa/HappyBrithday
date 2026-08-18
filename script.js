@@ -10,7 +10,7 @@ const CONFIG = {
     "Semoga langkahmu dimudahkan, rezekimu dilapangkan, dan orang-orang baik selalu menemukan jalan menuju hidupmu.",
     "Dan semoga kamu selalu punya alasan untuk bangga pada dirimu sendiri."
   ],
-  // Ganti dengan endpoint Formspree kamu sendiri, contoh: "https://formspree.io/f/xxxxabcd"
+  // Ganti dengan endpoint Formspree kamu sendiri, contoh: "https://formspree.io/f/xvoygpzv"
   // Cara dapetin: daftar gratis di https://formspree.io -> New Form -> copy
   // "Form Endpoint"-nya (isinya persis format di atas) -> tempel di sini.
   // Selama masih kosong, catatan permintaan TIDAK akan terkirim ke mana pun
