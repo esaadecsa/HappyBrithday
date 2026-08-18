@@ -16,9 +16,10 @@
 <div class="grain" aria-hidden="true"></div>
 <div id="confetti" class="confetti-layer" aria-hidden="true"></div>
 <div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+<div id="toast" class="toast" aria-live="polite"></div>
 
 <div id="progress" class="progress-dots" aria-hidden="true">
-  <i data-step="intro"></i><i data-step="letter"></i><i data-step="wish"></i><i data-step="gift"></i><i data-step="candle"></i><i data-step="final"></i>
+  <i data-step="intro"></i><i data-step="letter"></i><i data-step="wish"></i><i data-step="gift"></i><i data-step="candle"></i><i data-step="flower"></i><i data-step="final"></i>
 </div>
 
 <main class="app">
@@ -36,7 +37,7 @@
 </section>
 
 <section id="letter" class="screen">
-  <div class="topbar"><div class="topbar-left"><button id="musicBtn" class="icon-btn">♫</button><button id="sfxBtn" class="icon-btn">🔔</button></div><span>FOR YOU</span><button id="closeBtn" class="icon-btn">×</button></div>
+  <div class="topbar"><div class="topbar-left"><button id="musicBtn" class="icon-btn">♫</button><div id="visualizer" class="visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i></div><button id="sfxBtn" class="icon-btn">🔔</button></div><span>FOR YOU</span><button id="closeBtn" class="icon-btn">×</button></div>
   <div class="letter-wrap">
     <div class="photo-frame tilt-el"><div class="photo-glow"></div><img src="./img/hbd1.png" alt="Birthday"><span class="photo-label">a little memory ♡</span></div>
     <article class="letter-card">
@@ -119,6 +120,58 @@
   </div>
 </section>
 
+<section id="flower" class="screen">
+  <div class="scene-aura peach"></div>
+  <div class="flower-card">
+    <div class="eyebrow">ONE LAST SURPRISE</div>
+    <h2>Sebuket bunga,<br><em>khusus buat kamu.</em></h2>
+    <p>Semoga harum dan warnanya bikin harimu makin cerah.</p>
+
+    <div class="bouquet-scene" id="bouquetScene">
+      <div class="bucket">
+        <span class="bucket-shine"></span>
+        <span class="ribbon"></span>
+        <span class="ribbon-knot"></span>
+      </div>
+      <div class="stems" aria-hidden="true">
+        <span class="sprig sprig-l"></span>
+        <span class="sprig sprig-r"></span>
+        <div class="flower f1" style="--x:14%;--h:150px;--hue:336;--d:.02s">
+          <span class="stem"></span><span class="leaf ll"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f2" style="--x:66%;--h:158px;--hue:264;--d:.1s">
+          <span class="stem"></span><span class="leaf lr"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f3" style="--x:38%;--h:180px;--hue:346;--d:.18s">
+          <span class="stem"></span><span class="leaf ll"></span><span class="leaf lr"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f4" style="--x:53%;--h:132px;--hue:24;--d:.26s">
+          <span class="stem"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f5" style="--x:24%;--h:112px;--hue:300;--d:.34s">
+          <span class="stem"></span><span class="leaf lr"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f6" style="--x:78%;--h:126px;--hue:350;--d:.42s">
+          <span class="stem"></span><span class="leaf ll"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f7" style="--x:46%;--h:96px;--hue:44;--d:.5s">
+          <span class="stem"></span>
+          <div class="bloom tiny"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+      </div>
+    </div>
+
+    <button id="flowerNextBtn" class="primary-btn"><span>Buka kartunya</span><span>→</span></button>
+    <div class="micro-copy">tiap tangkai mewakili satu doa baik ✦</div>
+  </div>
+</section>
+
 <section id="final" class="screen">
   <div class="celebrate-aura"></div>
   <div class="final-inner">
@@ -126,11 +179,22 @@
     <div class="eyebrow">WISH GRANTED</div>
     <h2>Happy Birthday,<br><em id="nameFinal">you</em> ♡</h2>
     <p>Semoga semua doa baikmu<br>menemukan jalannya.</p>
+
+    <div class="secret-card" id="secretCard">
+      <p class="secret-message" id="secretMessage">Pesan kecil yang nggak selalu sempat aku bilang langsung: aku bersyukur kamu ada, dan aku ikut senang setiap kali harimu baik. ♡</p>
+      <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+      <div class="secret-hint" id="secretHint">gores kotaknya buat baca pesan rahasia ✦</div>
+    </div>
+
     <div class="final-actions">
-      <button id="shareBtn" class="primary-btn"><span>Bagikan surat ini</span><span>♡</span></button>
+      <div class="share-row" role="group" aria-label="Bagikan">
+        <button id="waShareBtn" class="icon-btn share-icon" aria-label="Bagikan ke WhatsApp">💬</button>
+        <button id="tgShareBtn" class="icon-btn share-icon" aria-label="Bagikan ke Telegram">✈️</button>
+        <button id="copyLinkBtn" class="icon-btn share-icon" aria-label="Salin link">🔗</button>
+        <button id="downloadCardBtn" class="icon-btn share-icon" aria-label="Unduh kartu ucapan">⬇️</button>
+      </div>
       <button id="againBtn" class="ghost-btn">ulang dari awal ↗</button>
     </div>
-    <div id="shareHint" class="micro-copy"></div>
   </div>
 </section>
 </main>
