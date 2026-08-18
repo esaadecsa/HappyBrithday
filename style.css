@@ -203,5 +203,119 @@
 @media (prefers-reduced-motion: reduce){
   .floating-heart,.shooting-star,.gift-object.shaking{animation:none!important}
   .tilt-el{transition:none!important}
-   }
-   
+}
+
+/* =========================================================
+   V5 — SHARE, SCRATCH CARD, TOAST, VISUALIZER
+   ========================================================= */
+
+/* ---- toast / snackbar feedback ---- */
+.toast{position:fixed;left:50%;bottom:64px;transform:translateX(-50%) translateY(20px);z-index:40;padding:12px 20px;border-radius:14px;background:rgba(22,19,34,.92);border:1px solid var(--line);backdrop-filter:blur(14px);color:#f3edf1;font-size:12.5px;letter-spacing:.02em;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1);max-width:min(320px,86vw);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{border-color:rgba(255,141,182,.4)}
+
+/* ---- music visualizer bars ---- */
+.visualizer{display:flex;align-items:flex-end;gap:2px;height:16px;padding:0 2px}
+.visualizer i{display:block;width:2.5px;border-radius:2px;background:linear-gradient(180deg,#ff9fbd,#a58aff);height:3px;transition:height .12s ease}
+.visualizer.playing i{animation:bar 900ms ease-in-out infinite}
+.visualizer i:nth-child(1){animation-delay:0s}
+.visualizer i:nth-child(2){animation-delay:.12s}
+.visualizer i:nth-child(3){animation-delay:.24s}
+.visualizer i:nth-child(4){animation-delay:.36s}
+@keyframes bar{0%,100%{height:3px}50%{height:15px}}
+
+/* ---- secret scratch card ---- */
+.secret-card{position:relative;width:min(420px,100%);margin:22px auto 0;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.secret-message{position:relative;z-index:1;margin:0;padding:22px 20px;min-height:96px;display:flex;align-items:center;justify-content:center;text-align:center;font:italic 14px/1.7 "Playfair Display";color:#f6eaf0;background:linear-gradient(150deg,rgba(255,159,189,.16),rgba(165,138,255,.16))}
+.scratch-canvas{position:absolute;inset:0;z-index:2;cursor:grab;touch-action:none;border-radius:18px}
+.scratch-canvas:active{cursor:grabbing}
+.scratch-canvas.revealed{opacity:0;transition:opacity .6s ease;pointer-events:none}
+.secret-hint{margin-top:9px;text-align:center;font-size:10px;color:#716d7c;letter-spacing:.08em}
+
+/* ---- share row ---- */
+.share-row{display:flex;justify-content:center;gap:10px}
+.share-icon{width:44px;height:44px;font-size:17px}
+.share-icon:hover{border-color:rgba(255,184,209,.35);transform:translateY(-2px)}
+
+/* =========================================================
+   V6 — FLOWER BUCKET REVEAL (post-candle gift)
+   ========================================================= */
+.scene-aura.peach{background:rgba(255,176,120,.13)}
+.flower-card{position:relative;z-index:2;width:min(560px,94vw);padding:30px 28px 34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,rgba(25,22,39,.84),rgba(12,11,22,.76));backdrop-filter:blur(20px);box-shadow:var(--shadow);text-align:center}
+.flower-card h2{font:600 clamp(38px,6.4vw,52px)/1.02 "Playfair Display";margin:12px 0 0}
+.flower-card p{color:var(--muted);line-height:1.7;margin:12px 0 0}
+.flower-card .primary-btn{margin-top:6px}
+
+.bouquet-scene{position:relative;width:min(360px,92vw);height:312px;margin:18px auto 6px}
+
+/* ---- bucket / wrap ---- */
+.bucket{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:158px;height:118px;
+  clip-path:polygon(18% 0%,82% 0%,100% 100%,0% 100%);
+  background:linear-gradient(160deg,#e7c9a3 0%,#caa06a 45%,#8a6239 100%);
+  box-shadow:0 24px 46px rgba(0,0,0,.4);overflow:hidden;z-index:3}
+.bucket::after{content:"";position:absolute;inset:0;opacity:.16;
+  background:repeating-linear-gradient(115deg,#fff 0 2px,transparent 2px 9px)}
+.bucket-shine{position:absolute;top:0;left:10%;width:26%;height:100%;background:linear-gradient(160deg,rgba(255,255,255,.35),transparent 70%);transform:skewX(-8deg)}
+.ribbon{position:absolute;left:0;right:0;top:22px;height:16px;background:linear-gradient(90deg,#ff9fbd,#ffd7e4,#ff9fbd);box-shadow:0 2px 6px rgba(0,0,0,.2);z-index:4}
+.ribbon-knot{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:26px;height:26px;border-radius:50% 50% 50% 4px;background:linear-gradient(145deg,#ffb8d1,#ff86b2);box-shadow:0 3px 8px rgba(0,0,0,.25);z-index:5}
+
+/* ---- stems / leaves / sprigs ---- */
+.stems{position:absolute;inset:0;z-index:2}
+.sprig{position:absolute;bottom:96px;width:3px;height:120px;border-radius:3px;
+  background:linear-gradient(180deg,#7fae7a,#4d7a52);opacity:.85}
+.sprig::before,.sprig::after{content:"";position:absolute;width:16px;height:8px;border-radius:50% 50% 0 50%;background:#6ea36a}
+.sprig::before{top:24%;left:-12px;transform:rotate(-25deg)}
+.sprig::after{top:52%;left:6px;transform:rotate(35deg)}
+.sprig-l{left:16%;transform:rotate(-12deg)}
+.sprig-r{left:80%;height:104px;transform:rotate(14deg)}
+
+.flower{position:absolute;left:var(--x);bottom:88px;transform:translateX(-50%);opacity:0;transform-origin:bottom center;z-index:2}
+.flower .stem{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:4px;height:var(--h);border-radius:3px;
+  background:linear-gradient(180deg,#8fc487,#4d7a52);transform-origin:bottom center;animation:stemSway 3.6s ease-in-out infinite alternate}
+.flower .leaf{position:absolute;bottom:calc(var(--h) * .38);width:22px;height:11px;border-radius:0 50% 50% 50%;
+  background:linear-gradient(135deg,#9fd196,#5c8f58)}
+.flower .leaf.ll{left:calc(50% - 20px);transform:rotate(-24deg)}
+.flower .leaf.lr{left:calc(50% + -2px);transform:rotate(24deg) scaleX(-1)}
+
+.flower .bloom{position:absolute;left:50%;bottom:var(--h);transform:translate(-50%,50%);width:52px;height:52px;animation:bloomSway 3.6s ease-in-out infinite alternate}
+.flower .bloom.small{width:38px;height:38px}
+.flower .bloom.tiny{width:28px;height:28px}
+.flower .bloom i{position:absolute;left:50%;top:50%;width:46%;height:62%;border-radius:50% 50% 50% 0;
+  transform-origin:0% 100%;
+  background:radial-gradient(circle at 34% 30%,hsl(var(--hue) 95% 93%) 0%,hsl(var(--hue) 82% 72%) 55%,hsl(var(--hue) 60% 46%) 100%);
+  box-shadow:inset 0 0 6px rgba(255,255,255,.25)}
+.flower .bloom i:nth-child(1){transform:rotate(0deg) translate(0,-2px)}
+.flower .bloom i:nth-child(2){transform:rotate(60deg) translate(0,-2px)}
+.flower .bloom i:nth-child(3){transform:rotate(120deg) translate(0,-2px)}
+.flower .bloom i:nth-child(4){transform:rotate(180deg) translate(0,-2px)}
+.flower .bloom i:nth-child(5){transform:rotate(240deg) translate(0,-2px)}
+.flower .bloom i:nth-child(6){transform:rotate(300deg) translate(0,-2px)}
+.flower .bloom b{position:absolute;left:50%;top:50%;width:26%;height:26%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff6d8,#ffd166 70%);box-shadow:0 0 8px rgba(255,209,102,.55);z-index:2}
+
+@keyframes stemSway{from{transform:translateX(-50%) rotate(-1.6deg)}to{transform:translateX(-50%) rotate(1.6deg)}}
+@keyframes bloomSway{from{transform:translate(-50%,50%) rotate(-3deg)}to{transform:translate(-50%,50%) rotate(3deg)}}
+@keyframes bloomPop{
+  0%{opacity:0;transform:translateX(-50%) scale(.25) translateY(14px)}
+  60%{opacity:1;transform:translateX(-50%) scale(1.08) translateY(-3px)}
+  100%{opacity:1;transform:translateX(-50%) scale(1) translateY(0)}
+}
+@keyframes bucketPop{
+  0%{opacity:0;transform:translateX(-50%) scale(.85) translateY(20px)}
+  100%{opacity:1;transform:translateX(-50%) scale(1) translateY(0)}
+}
+.bouquet-scene .bucket{opacity:0}
+.bouquet-scene.bloom-in .bucket{animation:bucketPop .55s cubic-bezier(.22,1,.36,1) forwards}
+.bouquet-scene.bloom-in .flower{animation:bloomPop .7s cubic-bezier(.22,1,.36,1) forwards;animation-delay:var(--d)}
+
+@media(max-width:700px){
+  .flower-card{padding:25px 20px}
+  .flower-card h2{font-size:38px}
+  .bouquet-scene{height:265px;transform:scale(.92)}
+}
+@media(max-height:720px){
+  .bouquet-scene{height:230px;transform:scale(.78);margin:6px auto -14px}
+}
+@media (prefers-reduced-motion: reduce){
+  .flower .stem,.flower .bloom{animation:none!important}
+}
