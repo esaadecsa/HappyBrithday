@@ -25,7 +25,7 @@ const CONFIG = {
     { id: "monokrom", title: "Terbuang dalam waktu", artist: "Barasuara", src: "./music/terbuang dalam waktu.mp3", hue: 32 },
     { id: "song2", title: "Monokrom", artist: "Tulus", src: "./music/monokrom.mp3", hue: 342 },
     { id: "song3", title: "Somebody's Plesure", artist: "Aziz Hedra", src: "./music/somebody's plesure.mp3", hue: 200 },
-    { id: "song4", title: "Ganti judul lagu 4", artist: "Ganti nama artis", src: "./music/song4.mp3", hue: 110 }
+    { id: "song4", title: "Hari ini hari Ulang Tahunmu", artist: "Gellen Martadinata", src: "./music/Hari ini hari Ulang Tahunmu.mp3", hue: 110 }
   ]
 };
 
