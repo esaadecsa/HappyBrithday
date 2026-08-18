@@ -132,3 +132,76 @@
     transform: scale(.78);
   }
 }
+
+/* =========================================================
+   V4 — INTERACTIVE UPGRADE
+   Progress dots · floating hearts · countdown · cursor glow ·
+   3D tilt · SFX toggle · swipe support · share
+   ========================================================= */
+
+/* ---- ambient floating hearts (behind content, above stars) ---- */
+.hearts-layer{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.floating-heart{position:absolute;bottom:-40px;color:var(--pink2);opacity:0;font-family:"Playfair Display",serif;will-change:transform,opacity;animation:heartRise linear forwards}
+@keyframes heartRise{
+  0%{opacity:0;transform:translateY(0) translateX(0) rotate(0deg) scale(.7)}
+  8%{opacity:.55}
+  88%{opacity:.4}
+  100%{opacity:0;transform:translateY(-112vh) translateX(var(--drift,0px)) rotate(var(--spin,20deg)) scale(1)}
+}
+
+/* ---- cursor glow (desktop only, subtle) ---- */
+.cursor-glow{position:fixed;top:0;left:0;width:260px;height:260px;margin:-130px 0 0 -130px;border-radius:50%;background:radial-gradient(circle,rgba(255,141,182,.10),rgba(162,140,255,.06) 45%,transparent 70%);pointer-events:none;z-index:1;opacity:0;transition:opacity .4s ease;filter:blur(2px)}
+@media(hover:hover) and (pointer:fine){.cursor-glow.visible{opacity:1}}
+
+/* ---- step progress dots ---- */
+.progress-dots{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:8px;z-index:15;padding:6px 10px;border-radius:999px}
+.progress-dots i{display:block;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);transition:all .4s cubic-bezier(.22,1,.36,1)}
+.progress-dots i.done{background:rgba(255,184,209,.55)}
+.progress-dots i.on{width:16px;background:linear-gradient(100deg,#ff86b2,#a58aff)}
+
+/* ---- countdown badge on intro ---- */
+.countdown{margin-top:22px;font-size:10px;letter-spacing:.14em;color:#9a94a6;display:flex;align-items:center;justify-content:center;gap:8px}
+.countdown b{color:var(--pink2);font-size:13px;font-weight:700;letter-spacing:0}
+.countdown.today b{color:#ffd166}
+
+/* ---- topbar layout for two icon buttons ---- */
+.topbar-left{display:flex;gap:8px}
+
+/* ---- 3D tilt wrapper (photo + gift box) ---- */
+.tilt-el{transition:transform .12s ease-out}
+
+/* ---- gift shake anticipation ---- */
+@keyframes giftShake{
+  0%,100%{transform:rotate(0)}
+  20%{transform:rotate(-3deg)}
+  40%{transform:rotate(3deg)}
+  60%{transform:rotate(-2deg)}
+  80%{transform:rotate(2deg)}
+}
+.gift-object.shaking{animation:giftShake .45s ease-in-out}
+
+/* ---- shooting star ---- */
+.shooting-star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;box-shadow:0 0 6px 1px rgba(255,255,255,.8);opacity:0;animation:shoot 1.4s ease-in forwards}
+.shooting-star::before{content:"";position:absolute;top:50%;right:0;width:90px;height:1px;transform:translateY(-50%);background:linear-gradient(90deg,rgba(255,255,255,.85),transparent)}
+@keyframes shoot{
+  0%{opacity:0;transform:translate(0,0)}
+  8%{opacity:1}
+  80%{opacity:.7}
+  100%{opacity:0;transform:translate(-260px,220px)}
+}
+
+/* ---- final screen actions + continuous soft hearts ---- */
+.final-actions{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:6px}
+#shareHint{min-height:14px}
+
+/* ---- swipe hint on intro (mobile) ---- */
+@media(max-width:700px){
+  .progress-dots{bottom:12px}
+}
+
+/* ---- respect reduced motion ---- */
+@media (prefers-reduced-motion: reduce){
+  .floating-heart,.shooting-star,.gift-object.shaking{animation:none!important}
+  .tilt-el{transition:none!important}
+   }
+   
