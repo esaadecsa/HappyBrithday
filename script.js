@@ -3,7 +3,7 @@
    ========================================================= */
 const CONFIG = {
   name: "kamu",
-  birthday: "2026-10-22T00:00:00+07:00",
+  birthday: "2026-10-01T00:00:00+07:00",
   letter: [
     "Hari ini, aku langitkan semua doa baik untuk kamu.",
     "Semoga hal-hal yang membuatmu lelah perlahan berubah menjadi alasan untuk tersenyum.",
@@ -22,8 +22,8 @@ const CONFIG = {
   // - hue: warna mood (0-360) yang dipakai untuk mewarnai suasana selama
   //   lagu itu diputar — makin lanjut slide-nya, makin terasa nuansanya
   playlist: [
-    { id: "monokrom", title: "Monokrom", artist: "Lagu utama", src: "./music/monokrom.mp3", hue: 32 },
-    { id: "song2", title: "Ganti judul lagu 2", artist: "Ganti nama artis", src: "./music/song2.mp3", hue: 342 },
+    { id: "monokrom", title: "Terbuang dalam waktu", artist: "Lagu utama", src: "./music/terbuang dalam waktu.mp3", hue: 32 },
+    { id: "song2", title: "Monokrom", artist: "Ganti nama artis", src: "./music/monokrom.mp3", hue: 342 },
     { id: "song3", title: "Ganti judul lagu 3", artist: "Ganti nama artis", src: "./music/song3.mp3", hue: 200 },
     { id: "song4", title: "Ganti judul lagu 4", artist: "Ganti nama artis", src: "./music/song4.mp3", hue: 110 }
   ]
