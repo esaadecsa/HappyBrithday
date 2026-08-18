@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0806">
+<title>For You ♡</title>
+
+<!-- ===== Share preview (WhatsApp / Telegram / Twitter) =====
+     Crawlers that render link previews (WhatsApp included) read this
+     raw HTML file directly and do NOT run script.js — so this preview
+     is always the same generic card, it can't pick up ?to= per person.
+     Edit og:title / og:description / og:image / og:url below if you
+     change the domain or want different preview copy. -->
+<meta name="description" content="Sebuah hadiah kecil, khusus untukmu ♡ Ada surat, ucapan, dan sedikit kejutan di dalamnya.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Esa Adecsa">
+<meta property="og:title" content="Ada hadiah kecil, khusus untukmu ♡">
+<meta property="og:description" content="Selamat ulang tahun! Ada surat, ucapan, dan sedikit kejutan di dalamnya. Sentuh untuk membukanya.">
+<meta property="og:image" content="https://esaadecsa.github.io/HappyBrithday/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://esaadecsa.github.io/HappyBrithday/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ada hadiah kecil, khusus untukmu ♡">
+<meta name="twitter:description" content="Selamat ulang tahun! Ada surat, ucapan, dan sedikit kejutan di dalamnya.">
+<meta name="twitter:image" content="https://esaadecsa.github.io/HappyBrithday/img/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+<div id="stars" class="stars" aria-hidden="true"></div>
+<div id="hearts" class="hearts-layer" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div id="confetti" class="confetti-layer" aria-hidden="true"></div>
+<div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<div id="musicToggle" class="music-toggle">
+  <button id="musicBtn" class="icon-btn" aria-label="Musik">♫</button>
+  <div id="visualizer" class="visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div id="progress" class="progress-dots" aria-hidden="true">
+  <i data-step="intro"></i><i data-step="letter"></i><i data-step="wish"></i><i data-step="mood"></i><i data-step="spirit"></i><i data-step="memories"></i><i data-step="polaroid"></i><i data-step="minigame"></i><i data-step="gift"></i><i data-step="candle"></i><i data-step="flower"></i><i data-step="final"></i>
+</div>
+
+<main class="app">
+
+<!-- ============ INTRO ============ -->
+<section id="intro" class="screen active">
+  <div class="orb orb-a"></div><div class="orb orb-b"></div>
+  <div class="card intro-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SEBUAH UNDANGAN KECIL, KHUSUS UNTUK</div>
+
+    <button id="sealBtn" class="seal" aria-label="Buka undangan">
+      <span class="seal-ring"></span>
+      <span class="seal-mark" id="sealMark">♡</span>
+    </button>
+
+    <h1>Untuk, <span id="nameIntro">kamu</span></h1>
+    <p class="intro-copy">Ada sesuatu yang kecil, tapi sepenuh hati, ingin aku sampaikan hari ini.</p>
+    <button id="openBtn" class="primary-btn"><span>Buka undangannya</span><span class="arrow">→</span></button>
+    <div class="hint">sentuh meterainya, atau tombol di bawah ✦</div>
+    <div id="countdown" class="countdown" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ============ LETTER ============ -->
+<section id="letter" class="screen">
+  <div class="topbar">
+    <span class="topbar-title">FOR YOU</span>
+    <div class="topbar-right">
+      <button id="sfxBtn" class="icon-btn" aria-label="Efek suara">🔔</button>
+      <button id="closeBtn" class="icon-btn" aria-label="Tutup">×</button>
+    </div>
+  </div>
+  <div class="letter-wrap">
+    <div class="photo-frame tilt-el">
+      <div class="photo-glow"></div>
+      <img id="birthdayImage" src="img/hbd1.png" alt="Kenangan kecil">
+      <span class="photo-label">a little memory ♡</span>
+    </div>
+    <article class="card letter-card">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <div class="letter-date">22 · OKTOBER</div>
+      <h2>Selamat<br><em>ulang tahun.</em></h2>
+      <p id="typeText" class="type-text"></p>
+      <div class="signature">— seseorang yang selalu mendoakanmu ♡</div>
+    </article>
+  </div>
+  <button id="nextBtn" class="round-btn" aria-label="Lanjut">↓</button>
+</section>
+
+<!-- ============ WISH ============ -->
+<section id="wish" class="screen">
+  <div class="card wish-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SATU HAL LAGI</div>
+    <h2>Semoga tahun ini,<br><em>lebih baik dari yang lalu.</em></h2>
+    <div class="wish-grid">
+      <div class="wish-pill"><span>01</span> lebih banyak alasan untuk tersenyum</div>
+      <div class="wish-pill"><span>02</span> lebih sedikit ruang untuk overthinking</div>
+      <div class="wish-pill"><span>03</span> semua doa baik yang kamu titipkan, sampai</div>
+    </div>
+    <button id="giftBtn" class="primary-btn"><span>Masih ada satu lagi</span><span class="arrow">→</span></button>
+  </div>
+</section>
+
+<!-- ============ MOOD CHECK-IN ============ -->
+<section id="mood" class="screen">
+  <div class="card wish-inner mood-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SEBELUM LANJUT</div>
+    <h2>Apa kabar<br><em>hati kamu hari ini?</em></h2>
+    <div class="mood-grid" id="moodGrid">
+      <button class="mood-btn" data-mood="good"><span class="mood-emoji">😊</span>baik-baik aja</button>
+      <button class="mood-btn" data-mood="tired"><span class="mood-emoji">😮‍💨</span>capek</button>
+      <button class="mood-btn" data-mood="heavy"><span class="mood-emoji">🥲</span>lagi berat</button>
+      <button class="mood-btn" data-mood="neutral"><span class="mood-emoji">🤔</span>biasa aja</button>
+    </div>
+    <p id="moodResponse" class="mood-response"></p>
+    <button id="moodNextBtn" class="primary-btn" disabled><span>Lanjut</span><span class="arrow">→</span></button>
+  </div>
+</section>
+
+<!-- ============ SPIRIT GENERATOR ============ -->
+<section id="spirit" class="screen">
+  <div class="scene-aura peach"></div>
+  <div class="card wish-inner spirit-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SATU KARTU SEMANGAT</div>
+    <h2>Butuh dorongan kecil?<br><em>Tarik satu kartu.</em></h2>
+    <div class="spirit-card-wrap">
+      <button id="spiritCard" class="spirit-card" aria-label="Tarik kartu semangat">
+        <div class="spirit-card-inner">
+          <div class="spirit-face front">✦</div>
+          <div class="spirit-face back"><p id="spiritText"></p></div>
+        </div>
+      </button>
+    </div>
+    <div class="spirit-actions">
+      <button id="spiritAgainBtn" class="ghost-btn spirit-again" style="display:none">tarik lagi ✦</button>
+      <button id="spiritNextBtn" class="primary-btn"><span>Lanjut</span><span class="arrow">→</span></button>
+    </div>
+    <div id="spiritHint" class="micro-copy">sentuh kartunya ✦</div>
+  </div>
+</section>
+
+<!-- ============ MEMORIES ============ -->
+<section id="memories" class="screen">
+  <div class="card wish-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">HAL-HAL KECIL</div>
+    <h2>Beberapa hal kecil<br><em>yang selalu aku ingat.</em></h2>
+    <div class="wish-grid">
+      <div class="wish-pill"><span>♡</span> caramu tertawa yang bikin ruangan ikut hangat</div>
+      <div class="wish-pill"><span>♡</span> caramu tetap kuat, bahkan di hari-hari yang berat</div>
+      <div class="wish-pill"><span>♡</span> caramu peduli, sekecil apapun itu, selalu terasa besar</div>
+    </div>
+    <button id="memoriesNextBtn" class="primary-btn"><span>Lanjut</span><span class="arrow">→</span></button>
+  </div>
+</section>
+
+<!-- ============ POLAROID ============ -->
+<section id="polaroid" class="screen">
+  <div class="scene-aura peach"></div>
+  <div class="card wish-inner polaroid-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SEDIKIT KENANGAN</div>
+    <h2>Beberapa momen<br><em>yang aku suka.</em></h2>
+    <div class="polaroid-stack" id="polaroidStack">
+      <figure class="polaroid"><img src="img/polaroid-1.jpg" alt="Kenangan 1" loading="lazy"><figcaption>versi paling anggun ✦</figcaption></figure>
+      <figure class="polaroid"><img src="img/polaroid-2.jpg" alt="Kenangan 2" loading="lazy"><figcaption>diem-diem mikir jauh ✦</figcaption></figure>
+      <figure class="polaroid"><img src="img/polaroid-3.jpg" alt="Kenangan 3" loading="lazy"><figcaption>versi ngasal, tetep gemes 😂</figcaption></figure>
+      <figure class="polaroid"><img src="img/polaroid-4.jpg" alt="Kenangan 4" loading="lazy"><figcaption>gaya bebas, khas kamu ✦</figcaption></figure>
+    </div>
+    <button id="polaroidNextBtn" class="primary-btn"><span>Lanjut</span><span class="arrow">→</span></button>
+    <div class="micro-copy polaroid-hint">geser buat lihat semuanya ✦</div>
+  </div>
+</section>
+
+<!-- ============ MINI GAME — MEMORY MATCH ============ -->
+<section id="minigame" class="screen">
+  <div class="scene-aura"></div>
+  <div class="card experience-card minigame-inner">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">SATU PERMAINAN KECIL</div>
+    <h2>Cocokkan <em>foto yang sama.</em></h2>
+    <p>Buka dua kartu, cari pasangannya ✦</p>
+    <div class="memory-grid" id="memoryGrid"></div>
+    <div id="minigameStatus" class="micro-copy">0 / 4 pasang ditemukan</div>
+    <button id="minigameNextBtn" class="primary-btn" disabled><span>Lanjut</span><span class="arrow">→</span></button>
+  </div>
+</section>
+
+<!-- ============ GIFT ============ -->
+<section id="gift" class="screen">
+  <div class="scene-aura"></div>
+  <div class="card experience-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="step-label"><span>03</span><i></i><span>?</span></div>
+    <button id="giftObject" class="gift-object tilt-el" aria-label="Buka hadiah">
+      <span class="gift-lid"></span><span class="gift-body"></span><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span><span class="gift-bow">♡</span>
+    </button>
+    <div class="eyebrow">HANYA UNTUKMU</div>
+    <h2 id="giftTitle">Ada <em>hadiah kecil</em> buat kamu.</h2>
+    <p id="giftQuestion">Tapi sebelum itu...<br><strong>kamu mau menerimanya?</strong></p>
+    <div class="choices">
+      <button id="yesBtn" class="primary-btn yes-btn"><span>MAU ❤️</span><span class="arrow">→</span></button>
+      <button id="noBtn" class="ghost-btn no-btn">GA MAU 😛</button>
+    </div>
+    <div id="choiceHint" class="micro-copy">sentuh hadiahnya dulu ✦</div>
+  </div>
+</section>
+
+<!-- ============ NOPE ============ -->
+<section id="nope" class="screen">
+  <div class="scene-aura pink"></div>
+  <div class="card nope-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="reaction">😮‍💨</div>
+    <div class="eyebrow">TUNGGU DULU...</div>
+    <h2 id="nopeTitle">Serius <em>ga mau?</em></h2>
+    <p id="nopeText">Ini sudah aku siapkan khusus buat kamu.<br>Jangan bikin aku baper dong 😭</p>
+    <div class="nope-actions">
+      <button id="retryBtn" class="primary-btn"><span>Yaudah, mau ❤️</span><span class="arrow">→</span></button>
+      <button id="reallyNoBtn" class="text-btn">tetap ga mau</button>
+    </div>
+    <div id="noCount" class="micro-copy">kesempatan: 2</div>
+  </div>
+</section>
+
+<!-- ============ CANDLE ============ -->
+<section id="candle" class="screen">
+  <div class="candle-aura"></div>
+  <div class="card candle-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">BUAT SATU PERMINTAAN</div>
+    <h2>Satu permintaan.<br><em>Satu lilin.</em></h2>
+    <p>Padamkan apinya untuk membuka kejutan terakhir.</p>
+
+    <div id="wishNote" class="wish-note">
+      <div class="wish-note-label">✦ catatan tersegel — tulis permintaanmu dulu ✦</div>
+      <textarea id="wishNoteInput" class="wish-note-input" maxlength="500" placeholder="tulis harapanmu di sini, nanti disegel..." rows="3"></textarea>
+      <button id="sealWishBtn" class="ghost-btn wish-note-seal">segel harapan 🔒</button>
+      <div id="wishNoteStatus" class="micro-copy">tulis dulu, baru bisa niup lilinnya</div>
+    </div>
+
+    <div id="cakeScene" class="cake-scene locked">
+      <div class="flame-wrap" id="flameTarget" role="button" tabindex="0" aria-label="Tiup atau tap api lilin">
+        <div class="flame"><span></span></div>
+      </div>
+      <div class="wick"></div>
+      <div class="candle-stick"></div>
+      <div class="cake-top"></div>
+      <div class="cake-body"><span class="cream cream1"></span><span class="cream cream2"></span><span class="sprinkles">✦ ✦ ✦ ✦ ✦</span></div>
+      <div class="plate"></div>
+    </div>
+    <div class="candle-actions locked">
+      <button id="blowBtn" class="primary-btn" disabled><span>🎙️ Tiup lilinnya</span></button>
+      <button id="tapFlameBtn" class="ghost-btn" disabled>atau tap apinya ✦</button>
+    </div>
+    <div id="micStatus" class="micro-copy">izin mikrofon opsional · tap api selalu bisa</div>
+  </div>
+</section>
+
+<!-- ============ FLOWER ============ -->
+<section id="flower-screen" class="screen">
+  <div class="scene-aura peach"></div>
+  <div class="card flower-card">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="eyebrow">KEJUTAN TERAKHIR</div>
+    <h2>Sebuket bunga,<br><em>khusus buat kamu.</em></h2>
+    <p>Semoga harum dan warnanya bikin harimu makin cerah.</p>
+
+    <div class="bouquet-scene" id="bouquetScene">
+      <div class="bucket">
+        <span class="bucket-shine"></span>
+        <span class="ribbon"></span>
+        <span class="ribbon-knot"></span>
+      </div>
+      <div class="stems" aria-hidden="true">
+        <span class="sprig sprig-l"></span>
+        <span class="sprig sprig-r"></span>
+        <div class="flower f1" style="--x:14%;--h:150px;--hue:346;--d:.02s">
+          <span class="stem"></span><span class="leaf ll"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f2" style="--x:66%;--h:158px;--hue:36;--d:.1s">
+          <span class="stem"></span><span class="leaf lr"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f3" style="--x:38%;--h:180px;--hue:352;--d:.18s">
+          <span class="stem"></span><span class="leaf ll"></span><span class="leaf lr"></span>
+          <div class="bloom"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f4" style="--x:53%;--h:132px;--hue:28;--d:.26s">
+          <span class="stem"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f5" style="--x:24%;--h:112px;--hue:340;--d:.34s">
+          <span class="stem"></span><span class="leaf lr"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f6" style="--x:78%;--h:126px;--hue:20;--d:.42s">
+          <span class="stem"></span><span class="leaf ll"></span>
+          <div class="bloom small"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+        <div class="flower f7" style="--x:46%;--h:96px;--hue:44;--d:.5s">
+          <span class="stem"></span>
+          <div class="bloom tiny"><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div>
+        </div>
+      </div>
+    </div>
+
+    <button id="flowerNextBtn" class="primary-btn"><span>Buka kartunya</span><span class="arrow">→</span></button>
+    <div class="micro-copy">tiap tangkai mewakili satu doa baik ✦</div>
+  </div>
+</section>
+
+<!-- ============ FINAL ============ -->
+<section id="final" class="screen">
+  <div class="celebrate-aura"></div>
+  <div class="final-inner">
+    <div class="final-mark">✦</div>
+    <div class="eyebrow">PERMINTAAN TERKABUL</div>
+    <h2>Happy Birthday,<br><em id="nameFinal">kamu</em> ♡</h2>
+    <p>Semoga semua doa baikmu<br>menemukan jalannya.</p>
+
+    <div class="card secret-card" id="secretCard">
+      <div class="corner tl"></div><div class="corner tr"></div>
+      <p class="secret-message" id="secretMessage">Pesan kecil yang nggak selalu sempat aku bilang langsung: aku bersyukur kamu ada, dan aku ikut senang setiap kali harimu baik. ♡</p>
+      <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+      <div class="secret-hint" id="secretHint">gores kotaknya buat baca pesan rahasia ✦</div>
+    </div>
+
+    <div class="final-actions">
+      <div class="share-row" role="group" aria-label="Bagikan">
+        <button id="waShareBtn" class="icon-btn share-icon" aria-label="Bagikan ke WhatsApp">💬</button>
+        <button id="tgShareBtn" class="icon-btn share-icon" aria-label="Bagikan ke Telegram">✈️</button>
+        <button id="copyLinkBtn" class="icon-btn share-icon" aria-label="Salin link">🔗</button>
+        <button id="downloadCardBtn" class="icon-btn share-icon" aria-label="Unduh kartu ucapan">⬇️</button>
+      </div>
+      <button id="againBtn" class="ghost-btn">ulang dari awal ↗</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<audio id="background-music" src="./music/monokrom.mp3" preload="auto" loop></audio>
+<script src="script.js?v=5"></script>
+</body>
+</html>
