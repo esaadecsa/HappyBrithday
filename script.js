@@ -53,7 +53,7 @@ const CONFIG = {
 // kunci ini dilewati (dilonggarkan) supaya kamu bisa lihat/uji semua
 // konten kapan saja. Bisa juga dilonggarkan sementara lewat URL
 // dengan menambah ?unlock=1 tanpa mengubah kode ini.
-const TIME_CAPSULE_TEST_MODE = true;
+const TIME_CAPSULE_TEST_MODE = false;
 
 /* ---------- real viewport height fix (mobile address-bar bug) ----------
    height:100% / 100vh on mobile browsers is based on the LARGEST possible
