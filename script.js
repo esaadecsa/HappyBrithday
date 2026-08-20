@@ -37,7 +37,7 @@ const CONFIG = {
   // dan tampil versi lengkap. Kalau tidak cocok / kosong, poster tampil
   // versi teaser umum (buat pengunjung lain yang lihat link/story-nya).
   // Kosongkan ("") kalau nggak mau ada pembedaan sama sekali.
-  posterTargetName: "",
+  posterTargetName: "Us",
   // Playlist ala Spotify di layar pertama. Tambah/ganti sesuka hati:
   // - title/artist: teks yang tampil di kartu lagu
   // - src: path ke file mp3 di folder /music (upload file kamu ke situ)
