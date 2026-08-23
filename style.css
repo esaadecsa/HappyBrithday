@@ -378,7 +378,7 @@ p{font:400 15.5px/1.65 var(--font-body);color:var(--ink-dim)}
 .signature{margin-top:18px;font:italic 500 14.5px/1.5 var(--font-display);color:var(--muted)}
 .type-text{
   min-height:1.6em;white-space:pre-line;display:block;
-  line-height:1.95;letter-spacing:.005em;
+  line-height:1.25;letter-spacing:.005em;
 }
 .type-text::after{content:"▍";color:var(--amber-bright);animation:caretBlink 1s step-end infinite}
 @keyframes caretBlink{50%{opacity:0}}
